@@ -45,8 +45,12 @@ def play(window, options, choice):
 
     if choice == 1:
         kana = Hiragana().hiragana
+        window.addstr(11, 30 - int(len("Practice Hiragana")/2),\
+        "Practice Hiragana", curses.color_pair(1))
     elif choice == 2:
         kana = Katakana().katakana
+        window.addstr(11, 30 - int(len("Practice Katakana")/2),\
+        "Practice Katakana", curses.color_pair(1))
 
     pair_list = random.sample(list(kana.items()), 3)
 
