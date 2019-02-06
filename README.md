@@ -9,4 +9,5 @@ To see the full hiragana dictionary, check the `hiragana.py` file.
 This is the same as the previous app, just with a very simple interface built with the Curses module.
 
 # Soon
+I plan to implement a katakana practice as well.
 I'll come up with a nice way to print the full dictionary and build a better interface.
