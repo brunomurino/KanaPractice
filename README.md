@@ -1,4 +1,4 @@
-# KataPractice
+# KanaPractice
 
 To start practicing, run `main.py`.
 
