@@ -46,7 +46,7 @@ def playHiragana(difficulty = 3):
         print("\nTruth:\t{}\t\n".format(correct_answer))
         print("Score:\t{}\n\nTotal:\t{}".format(score_list, sum(score_list)))
 
-def menu():
+def main():
 
     os.system('clear')
 
@@ -68,4 +68,4 @@ def menu():
 if __name__ == "__main__":
 
     while True:
-        menu()
+        main()
