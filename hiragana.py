@@ -1,4 +1,3 @@
-
 class Hiragana:
     """Creates hiragana-romaji dictionary"""
 
@@ -139,16 +138,4 @@ class Hiragana:
         self.hiragana['pyu'] = 'ぴゅ'
         self.hiragana['pyo'] = 'ぴょ'
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    

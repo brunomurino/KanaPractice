@@ -5,32 +5,67 @@ import sys
 import hiragana
 from hiragana import Hiragana
 
-def play_round(difficulty = 3):
+def getMenuChoice(menuLength):
 
-    hira = Hiragana().hiragana
+    while True:
+        try:
+            inp = int(input("Choose number from menu: "))
+            if inp > 0 and inp <= menuLength:
+                return inp
+            print("Invalid choice.")
+        except:
+            print("Only numbers allowed.")
 
-    pair_list = random.sample(list(hira.items()), difficulty)
+def printMenu(options):
 
-    correct_answer_list = [pair[0] for pair in pair_list]
-    correct_answer = " ".join(correct_answer_list)
+    print("")
+    for opt in list(options.items()):
+        print("\t{:d}. {:s}".format(opt[0], opt[1][0]))
+    print("")
 
-    question = [pair[1] for pair in pair_list]
-    question = " ".join(question)
+def playHiragana(difficulty = 3):
 
-    answers = input("\n\t{}\n\n\t".format(question))
-    if answers == 'quit' or answers == 'q':
-        sys.exit()
-    answers_list = answers.split()
+        hira = Hiragana().hiragana
 
-    score_list = [ int(ans == corr) for ans, corr in\
-        zip(answers_list, correct_answer_list)]
+        pair_list = random.sample(list(hira.items()), difficulty)
 
-    print("\nTruth:\t{}\t\n".format(correct_answer))
-    print("Score:\t{}\n\nTotal:\t{}".format(score_list, sum(score_list)))
+        correct_answer_list = [pair[0] for pair in pair_list]
+        correct_answer = " ".join(correct_answer_list)
 
-if __name__ == "__main__":
+        question = [pair[1] for pair in pair_list]
+        question = " ".join(question)
+
+        answers = input("\n\t{}\n\n\t".format(question))
+        if answers == 'quit' or answers == 'q':
+            menu()
+        answers_list = answers.split()
+
+        score_list = [ int(ans == corr) for ans, corr in\
+            zip(answers_list, correct_answer_list)]
+
+        print("\nTruth:\t{}\t\n".format(correct_answer))
+        print("Score:\t{}\n\nTotal:\t{}".format(score_list, sum(score_list)))
+
+def menu():
 
     os.system('clear')
 
+    options = {
+        1: ['Practice Hiragana', playHiragana],
+        2: ['Practice Katakana', playHiragana],
+        3: ['Quit', sys.exit]
+    }
+
+    printMenu(options)
+    choice = getMenuChoice(len(options))
+
+    if choice != 3:
+        print("\n\t{}\n\t\tEnter 'q' or 'quit' to go back to the menu."\
+            .format(options[choice][0]))
     while True:
-        play_round()
+        options[choice][1]()
+
+if __name__ == "__main__":
+
+    while True:
+        menu()
