@@ -11,6 +11,9 @@ from layout import drawApp
 import hiragana
 from hiragana import Hiragana
 
+import katakana
+from katakana import Katakana
+
 def getMenuChoice(window, menuLength):
 
     while True:
@@ -35,14 +38,17 @@ def getMenuChoice(window, menuLength):
         except:
             window.addstr(10, 8, "Only numbers allowed.", curses.color_pair(1))
 
-def playHiragana(window, options, difficulty=3):
+def play(window, options, choice):
 
     window.addstr(11, 30 - int(len("Practice Hiragana")/2),\
         "Practice Hiragana", curses.color_pair(1))
 
-    hira = Hiragana().hiragana
+    if choice == 1:
+        kana = Hiragana().hiragana
+    elif choice == 2:
+        kana = Katakana().katakana
 
-    pair_list = random.sample(list(hira.items()), difficulty)
+    pair_list = random.sample(list(kana.items()), 3)
 
     correct_answer_list = [pair[0] for pair in pair_list]
     correct_answer = " ".join(correct_answer_list)
@@ -56,7 +62,6 @@ def playHiragana(window, options, difficulty=3):
     window.addstr(17, 10, ' '*40, curses.color_pair(1))
     window.addstr(19, 10, ' '*40, curses.color_pair(1))
     window.addstr(21, 10, ' '*40, curses.color_pair(1))
-
 
     window.addstr(14, 10, question, curses.color_pair(1))
 
@@ -92,8 +97,8 @@ def main(stdscr):
     curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_BLUE)
 
     options = {
-        1: ['Practice Hiragana', playHiragana],
-        2: ['Practice Katakana', playHiragana],
+        1: ['Practice Hiragana', play],
+        2: ['Practice Katakana', play],
         3: ['Quit', sys.exit]
     }
 
@@ -102,7 +107,7 @@ def main(stdscr):
     choice = getMenuChoice(stdscr, 3)
 
     while True:
-        options[choice][1](stdscr, options)
+        options[choice][1](stdscr, options, choice)
 
 stdscr = curses.initscr()
 
