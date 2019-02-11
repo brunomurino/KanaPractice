@@ -22,7 +22,7 @@ def getMenuChoice(menuLength):
 
 def printMenu(options):
 
-    print(figlet_format('Kana Practice'))
+    print(figlet_format('PyKana'))
 
     print("")
     for opt in list(options.items()):
