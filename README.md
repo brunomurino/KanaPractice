@@ -1,4 +1,4 @@
-# KanaPractice
+# PyKana
 
 To start practicing, run `main.py`.
 
